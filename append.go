@@ -35,3 +35,12 @@ func Append(err error, errs ...error) *Error {
 		return Append(&Error{}, newErrs...)
 	}
 }
+
+// AppendMaybe only appends the error if it is not nil.
+// Returns multierror.
+func AppendMaybe(err error, other error) *Error {
+	if other != nil {
+		return Append(err, other)
+	}
+	return Append(err)
+}

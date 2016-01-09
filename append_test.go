@@ -62,3 +62,19 @@ func TestAppend_NonError_Error(t *testing.T) {
 		t.Fatalf("wrong len: %d", len(result.Errors))
 	}
 }
+
+func TestAppendMaybe_BothNilError(t *testing.T) {
+	var err error
+	result := AppendMaybe(err, nil)
+	if len(result.Errors) != 0 {
+		t.Fatalf("wrong len: %d", len(result.Errors))
+	}
+}
+
+func TestAppendMaybe_OtherNilError(t *testing.T) {
+	err := errors.New("some error")
+	result := AppendMaybe(err, nil)
+	if len(result.Errors) != 1 {
+		t.Fatalf("wrong len: %d", len(result.Errors))
+	}
+}

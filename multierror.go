@@ -24,7 +24,7 @@ func (e *Error) Error() string {
 // a list of errors, or returns nil if the list of errors is empty. This
 // function is useful at the end of accumulation to make sure that the value
 // returned represents the existence of errors.
-func (e *Error) ErrorOrNil() *Error {
+func (e *Error) ErrorOrNil() error {
 	if e == nil {
 		return nil
 	}
